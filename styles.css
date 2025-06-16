@@ -1,0 +1,454 @@
+/* 全域設定 */
+:root {
+    /* Semester color themes */
+    --semester-1-primary: #667eea;
+    --semester-1-secondary: #764ba2;
+    --semester-2-primary: #11998e;
+    --semester-2-secondary: #38ef7d;
+    --semester-3-primary: #fc466b;
+    --semester-3-secondary: #3f5efb;
+    --semester-4-primary: #ff6b35;
+    --semester-4-secondary: #f7931e;
+    
+    /* Global colors */
+    --text-primary: #2d3748;
+    --text-secondary: #718096;
+    --bg-primary: #f7fafc;
+    --bg-secondary: #ffffff;
+    --border-color: #e2e8f0;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background: linear-gradient(135deg, var(--semester-1-primary), var(--semester-1-secondary));
+    min-height: 100vh;
+    color: var(--text-primary);
+    transition: background 0.6s ease;
+}
+
+/* 動態背景切換 */
+body.semester-1 {
+    background: linear-gradient(135deg, var(--semester-1-primary), var(--semester-1-secondary));
+}
+
+body.semester-2 {
+    background: linear-gradient(135deg, var(--semester-2-primary), var(--semester-2-secondary));
+}
+
+body.semester-3 {
+    background: linear-gradient(135deg, var(--semester-3-primary), var(--semester-3-secondary));
+}
+
+body.semester-4 {
+    background: linear-gradient(135deg, var(--semester-4-primary), var(--semester-4-secondary));
+}
+
+/* 容器 */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 頭部區域 */
+.header {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    animation: slideInDown 0.8s ease-out;
+}
+
+.university-info h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, var(--semester-1-primary), var(--semester-1-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.university-info h2 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+}
+
+.applicant-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--semester-1-primary);
+    background: rgba(102, 126, 234, 0.1);
+    padding: 8px 16px;
+    border-radius: 20px;
+    display: inline-block;
+    border: 1px solid rgba(102, 126, 234, 0.2);
+}
+
+.total-credits {
+    text-align: center;
+    background: linear-gradient(135deg, var(--semester-1-primary), var(--semester-1-secondary));
+    color: white;
+    padding: 20px;
+    border-radius: 15px;
+    min-width: 120px;
+}
+
+.credits-label {
+    display: block;
+    font-size: 0.9rem;
+    opacity: 0.9;
+    margin-bottom: 5px;
+}
+
+.credits-value {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+/* 學期導航 */
+.semester-nav {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+    animation: slideInUp 0.8s ease-out 0.2s both;
+}
+
+.semester-btn {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 15px;
+    padding: 20px 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    text-align: center;
+    font-weight: 500;
+    color: var(--text-primary);
+    position: relative;
+    overflow: hidden;
+}
+
+.semester-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    background: rgba(255, 255, 255, 1);
+}
+
+.semester-btn.active {
+    background: linear-gradient(135deg, var(--semester-1-primary), var(--semester-1-secondary));
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+}
+
+.semester-btn i {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.semester-btn .credits {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-top: 5px;
+    display: block;
+}
+
+/* 主要內容區域 */
+.main-content {
+    flex: 1;
+    position: relative;
+}
+
+.semester-content {
+    display: none;
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.semester-content.active {
+    display: block;
+}
+
+.semester-header {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.semester-header h3 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: var(--text-primary);
+}
+
+.progress-bar {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    height: 8px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--semester-1-primary), var(--semester-1-secondary));
+    border-radius: 10px;
+    transition: width 0.8s ease;
+}
+
+/* 課程網格 */
+.courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 20px;
+}
+
+.course-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 15px;
+    padding: 25px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+}
+
+.course-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+    background: rgba(255, 255, 255, 1);
+}
+
+.course-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--semester-1-primary), var(--semester-1-secondary));
+}
+
+.course-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.course-header h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    flex: 1;
+}
+
+.credits-badge {
+    background: linear-gradient(135deg, var(--semester-1-primary), var(--semester-1-secondary));
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.course-experience {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+}
+
+.course-experience i {
+    font-size: 1.3rem;
+    color: var(--semester-1-primary);
+    margin-top: 3px;
+    flex-shrink: 0;
+}
+
+.course-experience.no-experience i {
+    color: #a0aec0;
+}
+
+.experience-note {
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+.course-experience p:last-child {
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.course-experience.no-experience p:last-child {
+    color: #a0aec0;
+    font-style: italic;
+}
+
+/* 底部 */
+.footer {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(20px);
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 30px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: slideInUp 0.8s ease-out 0.4s both;
+}
+
+.footer p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* 動畫 */
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .header {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+    
+    .university-info h1 {
+        font-size: 2rem;
+    }
+    
+    .university-info h2 {
+        font-size: 1.2rem;
+    }
+    
+    .semester-nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .semester-btn {
+        padding: 15px;
+    }
+    
+    .courses-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .course-card {
+        padding: 20px;
+    }
+    
+    .course-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .university-info h1 {
+        font-size: 1.8rem;
+    }
+    
+    .semester-header h3 {
+        font-size: 1.5rem;
+    }
+    
+    .course-header h4 {
+        font-size: 1.1rem;
+    }
+}
+
+/* 鍵盤快捷鍵支援 */
+.semester-btn:focus {
+    outline: 3px solid rgba(102, 126, 234, 0.5);
+    outline-offset: 2px;
+}
+
+/* 可訪問性改善 */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* 高對比度模式支援 */
+@media (prefers-contrast: high) {
+    .course-card {
+        border: 2px solid var(--text-primary);
+    }
+    
+    .semester-btn {
+        border: 2px solid var(--text-primary);
+    }
+} 
